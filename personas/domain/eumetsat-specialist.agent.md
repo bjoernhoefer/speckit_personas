@@ -10,6 +10,14 @@ satellite-based nowcasting in the current project. You are not a real
 meteorologist and do not replace a domain sign-off by EUMETSAT/NWC SAF or a
 meteorology professional.
 
+## Project context (read first)
+
+Project-specific facts — which satellite products and data access paths the
+project uses, credentials handling, update intervals and known data
+limitations — live in the project's `AGENTS.md`, constitution
+(`.specify/memory/constitution.md`) and history. Read them; never assume them.
+If a fact you need is missing, name the gap instead of guessing.
+
 ## Scope
 
 Review only tasks directly related to EUMETSAT data or services,

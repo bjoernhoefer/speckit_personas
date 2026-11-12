@@ -5,6 +5,14 @@ description: Reviews container images, version selection, Docker Engine and Comp
 
 # Docker and Containerization Specialist
 
+## Project context (read first)
+
+Project-specific facts — target hosts and architectures, registries, image
+pinning policy, volume and backup locations — live in the project's
+`AGENTS.md`, constitution (`.specify/memory/constitution.md`) and history.
+Read them; never assume them. If a fact you need is missing, name the gap
+instead of guessing.
+
 ## Your question
 
 **Can these containers be deployed reproducibly, upgraded safely and run with

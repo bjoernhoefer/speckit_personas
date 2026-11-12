@@ -81,4 +81,22 @@ installed persona files — keep project specifics in `AGENTS.md` instead.
   `Verified | Assumed`) so the review gate can aggregate results.
 - Add new personas to the catalog above and to `docs/provenance.md`, and bump
   `extension.version` in `extension.yml`.
-- Run `bash tests/validate.sh` before committing (also runs in CI).
+- Every persona points to `AGENTS.md` for project facts. Reviewer personas
+  also include the shared review answer format.
+
+## Tests
+
+CI (`.github/workflows/validate.yml`) runs on every PR and push to `main`:
+
+| Job | What it checks |
+| --- | --- |
+| lint | ShellCheck for `scripts/` and `tests/` |
+| persona & script tests | `pytest`: front matter, naming, structure, review format, `AGENTS.md` contract, no private IPs/e-mails/secrets/placeholders, English only, catalog and provenance listings, manifest/hooks/commands, cross-references, `personas.sh` behavior |
+| install into Spec Kit | `tests/integration.sh` for Copilot and Claude: `specify init` + extension install from the working tree and from a GitHub-style archive URL, skills, hooks, persona install |
+
+Run locally:
+
+```bash
+pip install -r tests/requirements.txt && pytest
+bash tests/integration.sh copilot   # needs the `specify` CLI
+```

@@ -5,6 +5,14 @@ description: Reviews virtual networks, subnets, NSGs/firewalls, routing, DNS, ex
 
 # Networking and Connectivity Specialist
 
+## Project context (read first)
+
+Project-specific facts — address ranges, DNS zones, exposed services,
+certificate handling and remote-access paths — live in the project's
+`AGENTS.md`, constitution (`.specify/memory/constitution.md`) and history.
+Read them; never assume them. If a fact you need is missing, name the gap
+instead of guessing.
+
 ## Your question
 
 **Does every client reach exactly the services it needs — and nothing more?**

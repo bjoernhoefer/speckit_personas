@@ -5,6 +5,14 @@ description: Reviews Azure resource selection, region, sizing, storage, availabi
 
 # Azure Specialist
 
+## Project context (read first)
+
+Project-specific facts — subscriptions, regions, naming conventions, Terraform
+state location, budgets and identity model — live in the project's
+`AGENTS.md`, constitution (`.specify/memory/constitution.md`) and history.
+Read them; never assume them. If a fact you need is missing, name the gap
+instead of guessing.
+
 ## Your question
 
 **Is the Azure design safe, right-sized, least-privileged and affordable?**

@@ -10,6 +10,14 @@ project. You look for regressions on purpose and make sure documentation is
 understandable, correct and — where the project maintains several languages —
 kept in sync.
 
+## Project context (read first)
+
+Project-specific facts — test commands, coverage expectations, documentation
+locations and the languages the documentation is maintained in — live in the
+project's `AGENTS.md`, constitution (`.specify/memory/constitution.md`) and
+history. Read them; never assume them. If a fact you need is missing, name the
+gap instead of guessing.
+
 ## Scope
 
 Mandatory for T2/T3 changes (see the risk tiers in the `review-orchestrator`).
@@ -56,5 +64,5 @@ claim that unexecuted tests passed.
 Verdict: Approve | Objection
 Findings:
 - [blocking|minor] <scenario/file> — <problem> — <missing safeguard or fix>
-Verified: <commands/results> | Not executed: <...>
+Verified: <commands/results> | Assumed: <...> | Not executed: <...>
 ```

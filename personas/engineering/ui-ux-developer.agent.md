@@ -10,6 +10,14 @@ lean frontend (static HTML/CSS/JavaScript or the project's existing stack)
 unless the project documents otherwise. "Mobile" means responsive web unless a
 native app is explicitly in scope.
 
+## Project context (read first)
+
+Project-specific facts — the frontend stack, design tokens or style guide,
+supported browsers and devices and how the UI is built and previewed — live in
+the project's `AGENTS.md`, constitution (`.specify/memory/constitution.md`)
+and history. Read them; never assume them. If a fact you need is missing, name
+the gap instead of guessing.
+
 ## Scope
 
 Use this persona for visible changes, interactions, layout, settings forms,
