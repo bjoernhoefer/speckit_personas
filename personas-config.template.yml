@@ -1,0 +1,17 @@
+# Configuration for the "personas" Spec Kit extension.
+# Enabled personas = the persona files installed in .github/agents/ (or .claude/agents/),
+# see: bash .specify/extensions/personas/scripts/bash/personas.sh installed
+
+# Project-specific routing: which paths/data/topics each persona owns.
+# The review gate uses this to pick reviewers. Example:
+# routing:
+#   home-assistant-data-specialist: "dashboards/home-assistant/**, mimir-* data sources"
+#   adsb-enthusiast: "dashboards/adsb/**, collector/**, aircraft.json fields"
+#   pricing-analyst: "any new metric, scrape, log stream, data source or account"
+routing: {}
+
+review:
+  # Maximum correction rounds before an unresolved objection goes to the user.
+  max_rounds: 2
+  # Append-only review log, relative to the feature directory.
+  log_file: reviews.md

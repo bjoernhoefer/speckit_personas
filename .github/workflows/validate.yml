@@ -1,0 +1,26 @@
+name: Validate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate persona catalog
+        run: bash tests/validate.sh
+      - name: Install extension into a fresh Spec Kit project
+        run: |
+          pip install --quiet "git+https://github.com/github/spec-kit.git"
+          mkdir -p /tmp/project && cd /tmp/project && git init -q
+          specify init --here --integration copilot --script sh --force --ignore-agent-tools
+          specify extension add --dev "$GITHUB_WORKSPACE"
+          bash .specify/extensions/personas/scripts/bash/personas.sh install review-orchestrator grafana-engineer
+          test -f .github/agents/review-orchestrator.agent.md
+          test -f .github/agents/grafana-engineer.agent.md
