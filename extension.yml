@@ -1,0 +1,57 @@
+schema_version: "1.0"
+
+extension:
+  id: personas
+  name: "SpecKit Personas"
+  version: "1.0.0"
+  description: "Reusable review personas (custom agents) and a persona review gate for Spec Kit projects"
+  author: bjoernhoefer
+  repository: https://github.com/bjoernhoefer/speckit_personas
+
+requires:
+  speckit_version: ">=0.9.0"
+
+provides:
+  commands:
+    - name: speckit.personas.select
+      file: commands/speckit.personas.select.md
+      description: "Select personas for this project and install them as custom agents"
+    - name: speckit.personas.review
+      file: commands/speckit.personas.review.md
+      description: "Persona review gate for spec, plan, tasks or implementation"
+
+  config:
+    - name: "personas-config.yml"
+      template: "personas-config.template.yml"
+      description: "Persona routing and review gate settings"
+      required: false
+
+hooks:
+  after_constitution:
+    command: speckit.personas.select
+    optional: true
+    prompt: "Select and install review personas for this project?"
+    description: "Choose the personas that match the project's domains"
+  after_specify:
+    command: speckit.personas.review
+    optional: true
+    prompt: "Run a domain pre-review of the spec with the selected personas?"
+    description: "Optional domain review of spec.md"
+  after_plan:
+    command: speckit.personas.review
+    optional: false
+    description: "Persona review gate for the plan"
+  after_tasks:
+    command: speckit.personas.review
+    optional: false
+    description: "Persona review gate for the tasks"
+  after_implement:
+    command: speckit.personas.review
+    optional: false
+    description: "Persona review gate for the implementation"
+
+tags:
+  - "personas"
+  - "review"
+  - "agents"
+  - "quality"

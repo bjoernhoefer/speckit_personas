@@ -1,0 +1,5 @@
+# Not needed in installed copies of the extension.
+.git/
+.github/
+tests/
+pytest.ini

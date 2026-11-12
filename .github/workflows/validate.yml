@@ -1,0 +1,48 @@
+name: Test
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: ShellCheck
+        run: shellcheck scripts/bash/*.sh tests/*.sh
+
+  unit:
+    name: persona & script tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r tests/requirements.txt
+      - name: Run pytest
+        run: pytest -v
+
+  integration:
+    name: install into Spec Kit (${{ matrix.integration }})
+    needs: unit
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        integration: [copilot, claude]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install Spec Kit CLI
+        run: pip install pyyaml "git+https://github.com/github/spec-kit.git"
+      - name: Install extension into fresh projects
+        run: bash tests/integration.sh ${{ matrix.integration }}
